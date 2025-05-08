@@ -1,0 +1,227 @@
+.sec {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.pad {
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.heading {
+    line-height: 55px;
+    font-size: 45px;
+}
+
+.page-head {
+    font-size: 50px;
+    line-height: 60px;
+}
+
+.sec-head {
+    font-size: 35px;
+}
+
+.f-16 {
+    font-size: 16px;
+}
+
+.para-f {
+    font-size: 14px;
+}
+
+.para-c {
+    color: #4e515c;
+}
+.position {
+    position: relative;
+    z-index: 5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.invert {
+    filter: invert(1);
+}
+
+.justify-content {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.vh-100 {
+    height: 100vh;
+}
+
+/* .vh-70 {
+    min-height: 80vh;
+} */
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Style for the loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    z-index: 9999;
+  }
+  
+  /* Example spinner */
+  .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Optional styling for content to be hidden by default */
+  #content {
+    display: none;
+  }
+  
+
+
+
+
+
+
+/* 1618 */
+
+
+@media (max-width: 1281px) {
+    .sec {
+        padding: 2em;
+    }
+
+    .heading {
+        font-size: 50px;
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1025px) {
+    .heading {
+        font-size: 45px;
+    }
+
+    #main .heading {
+        width: 62%;
+    }
+
+    .page-head {
+        font-size: 40px;
+        line-height: 50px ;
+    }
+}
+
+@media (max-width: 769px) {
+    .heading {
+        font-size: 35px;
+    }
+
+    .page-head {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 640px) {
+    #main .heading {
+        width: 70%;
+    }
+
+    .page-head {
+        font-size: 30px;
+    }
+
+    .sec {
+        padding: 2em 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading {
+        font-size: 25px;
+    }
+
+    .vh-100 {
+        height: 100svh !important;
+    }
+
+    .page-head {
+        font-size: 25px;
+        line-height: 35px;
+    }
+
+    #main .heading {
+        width: 75%;
+    }
+
+    .sec-head {
+        font-size: 28px;
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
