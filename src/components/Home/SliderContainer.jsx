@@ -72,9 +72,9 @@ function SliderContainer() {
               className="w-full h-full object-cover rounded-lg shadow-lg group-hover:scale-105 transform transition duration-500 ease-in-out"
             />
 
-            <div className="absolute title w-max bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 p-4  group-hover:opacity-100 group-hover:bottom-10 transition-all duration-500 ease-in-out opacity-0 text-center rounded">
+            <div className="absolute title w-max bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 p-4  transition-all duration-500 ease-in-out opacity-0 text-center rounded">
               {/* Title */}
-              <h2 className=" text-base font-bold text-white   opacity-0 group-hover:opacity-100 group-hover:bottom-16 transition-all duration-500 ease-in-out">
+              <h2 className=" text-base font-bold text-white   opacity-0  transition-all duration-500 ease-in-out">
                 {destination.title}
               </h2>
 
