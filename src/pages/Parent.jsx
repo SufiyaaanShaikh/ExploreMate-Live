@@ -8,7 +8,7 @@ function Parent() {
     const params = useParams();
     const viewingUserId = params.id;
     const [trips, setTrips] = useState([]);
-    const isProfilePage = location.pathname === "/profile";
+    const isProfilePage = location.pathname === "/profile" || location.pathname === "/";
   return (
     <>
    

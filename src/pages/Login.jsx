@@ -11,7 +11,7 @@ import api from "../config/axiosConfig";
 const Login = () => {
   const { handleLogin, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
-console.log(currentUser)
+
 
   const initialValues = {
     email: "",

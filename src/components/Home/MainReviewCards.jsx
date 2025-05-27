@@ -43,7 +43,7 @@ function MainReviewCards({ reviewData }) {
                   className="h-100 w-100"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = images('./placeholder.jpg');
+                    e.target.src = images('./placeholder.webp');
                   }}
                 />
               </div>

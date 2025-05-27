@@ -14,7 +14,6 @@ const UsersCards = () => {
       setLoading(true);
       const usersResponse = await api.get("/user");
       setUsers(usersResponse.data.data || []);
-      console.log(usersResponse.data.data);
     } catch (error) {
       console.error("Error fetching users:", error);
       toast.error(error.response?.data?.message || "Failed to fetch users");

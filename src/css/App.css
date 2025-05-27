@@ -296,6 +296,12 @@ header nav a:hover {
   width: 10px !important;
 }
 
+.slick-center .title, .slick-center .title h2 {
+  bottom: 64px;
+  opacity: 1;
+
+}
+
 /* Banner  */
 
 #main {
@@ -667,7 +673,7 @@ header nav a:hover {
 }
 
 .followBtn:active {
-  background: #333;
+  /* background: #333; */
   transform: scale(0.95);
 }
 
@@ -1514,6 +1520,8 @@ form .resetPwd {
   border-radius: 10px;
 }
 
+
+
 /* Responsive  */
 @media (max-width: 1440px) {}
 
@@ -1784,7 +1792,7 @@ form .resetPwd {
   }
 
   header nav {
-    display: none  !important;
+    display: none !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;

@@ -80,7 +80,6 @@ function TripsTab({setTrips, trips}) {
           date: formatTripDate(trip.startDate, trip.endDate),
           description: trip.tripType || trip.description,
         }));
-        console.log(formattedTrips)
         setTrips(formattedTrips);
       } else {
         console.error("Unexpected response format:", response.data);

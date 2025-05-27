@@ -6,13 +6,16 @@ import SearchInputBox from "./SearchInputBox";
 import api from "../../config/axiosConfig";
 import toast from "react-hot-toast";
 import AuthContext from "../../context/AuthContext"; 
+import LoadingSpinner from "../LoadingSpinner";
+import SkeletonCard from "./SkeletonCard";
 
 function FeedContainer() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initialQuery = queryParams.get("query") || "";
   const navigate = useNavigate();
-  const { currentUser, handleFollow } = useContext(AuthContext); 
+  const { currentUser, handleFollow, followLoading} = useContext(AuthContext);
+  
 
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
@@ -35,13 +38,18 @@ function FeedContainer() {
   };
 
   useEffect(() => {
-    if (token) {
       fetchData(searchQuery.trim());
-    } else {
-      navigate("/login");
-      toast.error("Please login to view feed");
-    }
+      // navigate("/login");
+      // toast.error("Please login to view feed");
   }, [searchQuery]);
+
+  // if(followLoading) {
+  //   return (
+  //     <div className="flex justify-center items-center min-h-screen">
+  //     <LoadingSpinner />
+  //   </div>
+  //   );
+  // }
 
   return (
     <motion.section
@@ -67,9 +75,11 @@ function FeedContainer() {
           transition={{ duration: 0.5 }}
         >
           {loading ? (
-            <p className="text-center w-full">Loading users...</p>
+             Array.from({ length: 6 }).map((_, index) => (
+              <SkeletonCard key={index} />
+            ))
           ) : users.length > 0 ? (
-            <FeedCards filteredDestinations={users} handleFollow={handleFollow} currentUser={currentUser} />
+            <FeedCards filteredDestinations={users} handleFollow={handleFollow} currentUser={currentUser} followLoading={followLoading} />
           ) : (
        
             <p className="notFound f-16 text-center fw-500 mx-auto">

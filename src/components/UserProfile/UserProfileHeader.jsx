@@ -8,41 +8,47 @@ import Header from "../Header";
 import Footer from "../Footer";
 import AuthContext from "../../context/AuthContext";
 
-function UserProfileHeader({trips}) {
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const [profile, setProfile] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [followLoading, setFollowLoading] = useState(false);
+function UserProfileHeader({ trips }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  // const [followLoading, setFollowLoading] = useState(false);
 
-  const { currentUser, handleFollow, profileCache, fetchUserProfile } = useContext(AuthContext);
+  const {
+    currentUser,
+    handleFollow,
+    followLoading,
+    profileCache,
+    fetchUserProfile,
+  } = useContext(AuthContext);
   const token = localStorage.getItem("token");
 
   // Authentication check and data fetching
   useEffect(() => {
-    if (!token) {
-      toast.error("Please login to view profiles");
-      const timer = setTimeout(() => navigate("/login"), 1500);
-      return () => clearTimeout(timer);
-    }
+    // if (!token) {
+    //   toast.error("Please login to view profiles");
+    //   const timer = setTimeout(() => navigate("/login"), 1500);
+    //   return () => clearTimeout(timer);
+    // }
 
     const fetchProfileData = async () => {
       try {
         setLoading(true);
-        
+
         // Check if profile is in cache
         if (profileCache[id]) {
           setProfile(profileCache[id]);
           setLoading(false);
           return;
         }
-        
+
         // If not in cache, fetch it
         const profileData = await fetchUserProfile(id);
         if (profileData) {
           setProfile(profileData);
         } else {
-          navigate("/feed"); // Redirect to feed if user not found
+          // navigate("/feed"); // Redirect to feed if user not found
         }
       } catch (error) {
         console.error("Error fetching profile:", error);
@@ -56,7 +62,7 @@ function UserProfileHeader({trips}) {
     };
 
     fetchProfileData();
-  }, [id, token, navigate, fetchUserProfile, profileCache]);
+  }, [id, navigate, fetchUserProfile, profileCache]);
 
   // Check if current user is following profile user - memoized to prevent recalculation
   const isFollowing = useMemo(() => {
@@ -71,58 +77,58 @@ function UserProfileHeader({trips}) {
   }, [currentUser?.following, profile?._id]);
 
   // Handle follow/unfollow with optimistic UI update
-  const handleProfileFollow = async () => {
-    if (followLoading || !currentUser) return;
+  // const handleProfileFollow = async () => {
+  //   if (followLoading || !currentUser) return;
 
-    try {
-      setFollowLoading(true);
+  //   try {
+  //     setFollowLoading(true);
 
-      // Optimistically update UI before API call completes
-      const wasFollowing = isFollowing;
+  //     // Optimistically update UI before API call completes
+  //     const wasFollowing = isFollowing;
 
-      setProfile((prevProfile) => {
-        if (!prevProfile) return prevProfile;
+  //     setProfile((prevProfile) => {
+  //       if (!prevProfile) return prevProfile;
 
-        const newFollowersCount = wasFollowing
-          ? (prevProfile.followers?.length || 1) - 1
-          : (prevProfile.followers?.length || 0) + 1;
+  //       const newFollowersCount = wasFollowing
+  //         ? (prevProfile.followers?.length || 1) - 1
+  //         : (prevProfile.followers?.length || 0) + 1;
 
-        return {
-          ...prevProfile,
-          followers: Array(newFollowersCount).fill(null), // Just for count display
-        };
-      });
+  //       return {
+  //         ...prevProfile,
+  //         followers: Array(newFollowersCount).fill(null), // Just for count display
+  //       };
+  //     });
 
-      // Make the actual API call to update follow status
-      const success = await handleFollow(id);
-      
-      // If the call failed, revert the optimistic update
-      if (!success) {
-        setProfile((prevProfile) => {
-          if (!prevProfile) return prevProfile;
-          
-          const originalFollowersCount = wasFollowing
-            ? (prevProfile.followers?.length || 0) + 1
-            : (prevProfile.followers?.length || 1) - 1;
-            
-          return {
-            ...prevProfile,
-            followers: Array(originalFollowersCount).fill(null),
-          };
-        });
-      } else {
-        // On success, we need to refresh the profile data to get accurate counts
-        const updatedProfile = await fetchUserProfile(id);
-        if (updatedProfile) {
-          setProfile(updatedProfile);
-        }
-      }
-    } catch (error) {
-      console.error("Follow/unfollow error:", error);
-    } finally {
-      setFollowLoading(false);
-    }
-  };
+  //     // Make the actual API call to update follow status
+  //     const success = await handleFollow(id);
+
+  //     // If the call failed, revert the optimistic update
+  //     if (!success) {
+  //       setProfile((prevProfile) => {
+  //         if (!prevProfile) return prevProfile;
+
+  //         const originalFollowersCount = wasFollowing
+  //           ? (prevProfile.followers?.length || 0) + 1
+  //           : (prevProfile.followers?.length || 1) - 1;
+
+  //         return {
+  //           ...prevProfile,
+  //           followers: Array(originalFollowersCount).fill(null),
+  //         };
+  //       });
+  //     } else {
+  //       // On success, we need to refresh the profile data to get accurate counts
+  //       const updatedProfile = await fetchUserProfile(id);
+  //       if (updatedProfile) {
+  //         setProfile(updatedProfile);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Follow/unfollow error:", error);
+  //   } finally {
+  //     setFollowLoading(false);
+  //   }
+  // };
 
   // Loading state
   if (loading) {
@@ -141,15 +147,14 @@ function UserProfileHeader({trips}) {
   if (!profile) {
     return (
       <>
-        <Header />
-        <div className="flex justify-center items-center min-h-screen">
+        {/* <Header /> */}
+        <div className="flex z-40 bg-white justify-center items-center min-h-screen">
           <p>User not found</p>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </>
     );
   }
-
   return (
     <>
       <div className="profile-block">
@@ -184,30 +189,30 @@ function UserProfileHeader({trips}) {
               <p className="des f-16">Following</p>
             </div>
           </div>
-          {currentUser && currentUser._id !== profile._id && (
-            <div className="btn-block flex">
-              <button
-                type="button"
-                onClick={handleProfileFollow}
-                disabled={followLoading}
-                id="followBtn"
-                className={`followBtn ${
-                  isFollowing
-                    ? "bg-transparent hover:text-zinc-700"
-                    : "bg-black text-white hover:bg-zinc-800"
-                }`}
-              >
-                {followLoading
-                  ? "Processing..."
-                  : isFollowing
-                  ? "Unfollow"
-                  : "Follow"}
-              </button>
-              <button id="msgBtn" className="msgBtn">
-                Message
-              </button>
-            </div>
-          )}
+          {/* {currentUser && currentUser._id !== profile._id && ( */}
+          <div className="btn-block flex">
+            <button
+              type="button"
+              onClick={() => handleFollow(profile._id)}
+              disabled={followLoading}
+              id="followBtn"
+              className={`followBtn ${
+                isFollowing
+                  ? "bg-transparent hover:text-zinc-700"
+                  : "bg-black text-white hover:bg-zinc-800"
+              }`}
+            >
+              {followLoading
+                ? "Processing..."
+                : isFollowing
+                ? "Unfollow"
+                : "Follow"}
+            </button>
+            <button id="msgBtn" className="msgBtn">
+              Message
+            </button>
+          </div>
+          {/* )} */}
         </div>
       </div>
     </>

@@ -38,7 +38,7 @@ const Signup = () => {
       setCurrentUser(name);
       // Use the local variable in the request
       const response = await axios.post(
-        "https://exploremates-backend-production.up.railway.app/api/auth/signup",
+        "http://localhost:5017/api/auth/signup",
         {
           name,
           email,
@@ -56,7 +56,7 @@ const Signup = () => {
         resetForm();
       }
     } catch (error) {
-      console.log(error);
+      console.error("Signup error:", error);
       toast.error(error.response?.data?.message || "Signup failed. Try again.");
     } finally {
       setLoading(false);

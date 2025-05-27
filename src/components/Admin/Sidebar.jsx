@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaUser, FaStar, FaSuitcase, FaBars } from "react-icons/fa";
+import { FaCirclePlus, FaMountainSun } from "react-icons/fa6";
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -44,6 +45,22 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
           } ${!isOpen ? "justify-center" : ""}`}
         >
           <FaStar /> {isOpen && <span className="truncate">Reviews</span>}
+        </button>
+        <button
+          onClick={() => setActiveTab("AddWiki")}
+          className={`flex items-center gap-2 p-2 rounded ${
+            activeTab === "AddWiki" ? "bg-[#abc2ff] text-black" : ""
+          } ${!isOpen ? "justify-center" : ""}`}
+        >
+         <FaCirclePlus /> {isOpen && <span className="truncate">AddWiki</span>}
+        </button>
+        <button
+          onClick={() => setActiveTab("DisplayWiki")}
+          className={`flex items-center gap-2 p-2 rounded ${
+            activeTab === "DisplayWiki" ? "bg-[#abc2ff] text-black" : ""
+          } ${!isOpen ? "justify-center" : ""}`}
+        >
+         <FaMountainSun /> {isOpen && <span className="truncate">DisplayWiki</span>}
         </button>
       </nav>
     </div>

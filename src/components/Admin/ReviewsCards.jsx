@@ -16,7 +16,6 @@ const ReviewsTable = () => {
     setLoading(true);
     try {
       const response = await api.get("/review/all");
-      console.log(response);
       if (response.data && response.data.data) {
         setReviews(response.data.data);
       } else {

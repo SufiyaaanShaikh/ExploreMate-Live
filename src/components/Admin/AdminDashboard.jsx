@@ -1,6 +1,8 @@
 import UsersCards from "./UsersCards";
 import ReviewsCards from "./ReviewsCards";
 import TripsCards from "./TripsCards";
+import AddWiki from "./AddWiki";
+import DisplayWiki from "./DisplayWiki";
 
 const AdminDashboard = ({ activeTab }) => {
   return (
@@ -8,6 +10,8 @@ const AdminDashboard = ({ activeTab }) => {
       {activeTab === "Users" && <UsersCards />}
       {activeTab === "Trips" && <TripsCards />}
       {activeTab === "Reviews" && <ReviewsCards />}
+      {activeTab === "AddWiki" && <AddWiki />}
+      {activeTab === "DisplayWiki" && <DisplayWiki />}
     </div>
   );
 };

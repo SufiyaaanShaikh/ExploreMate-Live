@@ -7,6 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [followLoading, setFollowLoading] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
   // Store profile data for active user profiles to avoid refetching
   const [profileCache, setProfileCache] = useState({});
@@ -36,26 +37,29 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Fetch a user profile and cache it
-  const fetchUserProfile = useCallback(async (userId) => {
-    if (!token) return null;
-    
-    try {
-      const response = await api.get(`/user/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      
-      // Update the cache
-      setProfileCache(prev => ({
-        ...prev,
-        [userId]: response.data
-      }));
-      
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching user profile:", error);
-      return null;
-    }
-  }, [token]);
+  const fetchUserProfile = useCallback(
+    async (userId) => {
+      // if (!token) return null;
+
+      try {
+        const response = await api.get(`/user/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        // Update the cache
+        setProfileCache((prev) => ({
+          ...prev,
+          [userId]: response.data,
+        }));
+
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+        return null;
+      }
+    },
+    [token]
+  );
 
   const handleFollow = async (userId) => {
     if (!token || !currentUser) {
@@ -63,18 +67,19 @@ export const AuthProvider = ({ children }) => {
       return false;
     }
     try {
+      setFollowLoading(true);
       // Call the API to follow/unfollow
       await api.put(`/user/follow/${userId}`);
-      
+
       // Update currentUser with new follow status (important for isFollowing check)
       const updatedUser = await api.get("/user/me");
       setCurrentUser(updatedUser.data);
-      
+
       // Update the profile in cache if it exists
       if (profileCache[userId]) {
         await fetchUserProfile(userId);
       }
-      
+
       toast.success("Follow status updated successfully");
       return true;
     } catch (error) {
@@ -83,6 +88,8 @@ export const AuthProvider = ({ children }) => {
         error.response?.data?.message || "Failed to update follow status"
       );
       return false;
+    } finally {
+      setFollowLoading(false);
     }
   };
 
@@ -105,12 +112,13 @@ export const AuthProvider = ({ children }) => {
       value={{
         currentUser,
         handleFollow,
+        followLoading,
         handleLogout,
         handleLogin,
         isLoading,
         fetchUserProfile,
         profileCache,
-        setCurrentUser
+        setCurrentUser,
       }}
     >
       {children}

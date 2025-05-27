@@ -16,6 +16,7 @@ import usersData from "./Data/usersData";
 import TripPage from "./components/Profile/TripPage";
 import Parent from "./pages/Parent";
 import Private from "./pages/Private";
+import EditWiki from "./components/Admin/EditWiki";
 
 
 const AppLayout = ({ children }) => {
@@ -76,6 +77,10 @@ const allRoutes = createBrowserRouter([
   {
     path: "/trip/:tripId",
     element: withLayout(TripPage),
+  },
+  {
+    path: "/edit-wiki/:destinationId",
+    element: withLayout(EditWiki),
   },
 ]);
 
