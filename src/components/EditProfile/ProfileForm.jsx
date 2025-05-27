@@ -173,7 +173,7 @@ const ProfileForm = () => {
                 type={key === "age" ? "number" : key === "email" ? "email" : "text"}
                 id={key}
                 name={key}
-                disabled = {isSubmitting}
+                disabled = {isSubmitting || key === "email"} // Disable email field to prevent changes
                 placeholder={`Your ${key.charAt(0).toUpperCase() + key.slice(1)}`}
                 className="border text-xs border-gray-300 border-solid rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm"
               />
