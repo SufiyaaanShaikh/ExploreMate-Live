@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
-import api from "../../config/axiosConfig"; 
-import LoadingSpinner from "../../components/LoadingSpinner"; 
+import api from "../../config/axiosConfig"; // Adjust the path as needed
 
 // Validation Schema
 const ProfileValidationSchema = Yup.object().shape({
@@ -108,9 +107,7 @@ const ProfileForm = () => {
   };
 
   if (loading) {
-    return (
-      <LoadingSpinner />
-    );
+    return <p>Loading...</p>;
   }
 
   if (!userData) {
