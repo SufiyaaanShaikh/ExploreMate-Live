@@ -17,15 +17,19 @@ function EditProfile() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await api.get("/user/me");
+        setLoading(true);
         setCurrentUser(res.data);
       } catch (error) {
         console.error("Error fetching user:", error);
         setCurrentUser(null);
+      } finally {
+        setLoading(false);
       }
     };
     fetchUser();
@@ -46,6 +50,13 @@ function EditProfile() {
       setActiveTab(tabId);
     }
   };
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader"></div>
+      </div>
+    );
+  }
 
   return (
     <>

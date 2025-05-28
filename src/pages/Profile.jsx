@@ -10,23 +10,35 @@ import { motion } from "framer-motion";
 function Profile({trips, setTrips}) {
   const [profileImage, setProfileImage] = useState(userIcon);
   const [currentUser, setCurrentUser] = useState(null);
+const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
         const { data } = await api.get("/user/me");
+        setLoading(true);
         setCurrentUser(data);
         if (data.profilePhoto) {
           setProfileImage(data.profilePhoto);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchCurrentUser();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader"></div>
+      </div>
+    );
+  }
 
   return (
     <>

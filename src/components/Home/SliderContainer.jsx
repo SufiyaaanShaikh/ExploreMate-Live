@@ -27,7 +27,7 @@ function SliderContainer() {
     className: "center",
     centerMode: true,
     centerPadding: "60px",
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     responsive: [
