@@ -53,7 +53,7 @@ const ProfileForm = () => {
     const file = event.target.files[0];
     if (file) {
       setProfileFile(file); // Store file for form submission
-      
+
       // Create preview URL
       const reader = new FileReader();
       reader.onload = () => {
@@ -68,38 +68,43 @@ const ProfileForm = () => {
     try {
       // Create FormData object to handle file upload
       const formData = new FormData();
-      
+
       // Add text fields to FormData
-      Object.keys(values).forEach(key => {
-        if (values[key] !== null && values[key] !== undefined && key !== 'profilePhoto') {
+      Object.keys(values).forEach((key) => {
+        if (
+          values[key] !== null &&
+          values[key] !== undefined &&
+          key !== "profilePhoto"
+        ) {
           formData.append(key, values[key]);
         }
       });
-      
+
       // Add file if it exists
       if (profileFile) {
         formData.append("profile", profileFile);
       }
-      
+
       // Make the API request
       const response = await api.put("/user/update-profile", formData, {
         timeout: 20000,
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
-      
+
       // Update local user data
-      setUserData(prev => ({
+      setUserData((prev) => ({
         ...prev,
-        ...response.data.data
+        ...response.data.data,
       }));
-      
+
       toast.success("Profile updated successfully");
     } catch (error) {
       console.error("Update error:", error);
       toast.error(
-        error.response?.data?.message || "Failed to update profile. Please try again."
+        error.response?.data?.message ||
+          "Failed to update profile. Please try again."
       );
     } finally {
       setSubmitting(false);
@@ -130,67 +135,85 @@ const ProfileForm = () => {
     >
       {({ errors, touched, isSubmitting }) => (
         <Form className="space-y-6">
-          <h2 className="text-2xl font-bold">My Account</h2>
+          <div className="mb-7">
+            <h2 className="text-2xl font-bold">My Account</h2>
 
-          {/* Profile Photo Section */}
-          <div className="flex flex-col items-center space-y-4">
-            <label className="text-sm font-medium text-gray-700">Profile Photo</label>
-            <div className="relative group">
-              {imagePreview ? (
-                <img
-                  src={imagePreview}
-                  alt="Profile Preview"
-                  className="w-32 h-32 object-cover rounded-full shadow-md"
-                />
-              ) : (
-                <div className="w-32 h-32 bg-gray-200 flex items-center justify-center rounded-full shadow-md">
-                  <span className="text-gray-500">No Image</span>
-                </div>
-              )}
-              <label
-                htmlFor="profilePhoto"
-                className="absolute bottom-0 right-0 transform translate-y-1/2 translate-x-1/2 bg-blue-500 text-white px-4 py-2 text-xs font-medium rounded-full shadow-md cursor-pointer hover:bg-blue-600 transition"
-              >
-                Upload
-                <input
-                  type="file"
-                  id="profilePhoto"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="hidden"
-                />
+            {/* Profile Photo Section */}
+            <div className="flex flex-col items-center space-y-4">
+              <label className="text-sm font-medium text-gray-700">
+                Profile Photo
               </label>
+              <div className="relative group">
+                {imagePreview ? (
+                  <img
+                    src={imagePreview}
+                    alt="Profile Preview"
+                    className="w-32 h-32 object-cover rounded-full shadow-md"
+                  />
+                ) : (
+                  <div className="w-32 h-32 bg-gray-200 flex items-center justify-center rounded-full shadow-md">
+                    <span className="text-gray-500">No Image</span>
+                  </div>
+                )}
+                <label
+                  htmlFor="profilePhoto"
+                  className="absolute bottom-0 right-0 transform translate-y-1/2 translate-x-1/2 bg-blue-500 text-white px-4 py-2 text-xs font-medium rounded-full shadow-md cursor-pointer hover:bg-blue-600 transition"
+                >
+                  Upload
+                  <input
+                    type="file"
+                    id="profilePhoto"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </label>
+              </div>
             </div>
           </div>
 
           {/* Form Fields */}
-          {["name", "email", "phone", "age", "address", "bio"].map((key) => (
-            <div key={key} className="flex flex-col h-16">
-              <label htmlFor={key} className="text-sm mb-2 font-medium text-gray-700">
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-              </label>
-              <Field
-                type={key === "age" ? "number" : key === "email" ? "email" : "text"}
-                id={key}
-                name={key}
-                disabled = {isSubmitting || key === "email"} // Disable email field to prevent changes
-                placeholder={`Your ${key.charAt(0).toUpperCase() + key.slice(1)}`}
-                className="border text-xs border-gray-300 border-solid rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm"
-              />
-              {errors[key] && touched[key] && (
-                <div className="text-red-500 text-xs mt-1">{errors[key]}</div>
-              )}
-            </div>
-          ))}
+          <div className="grid grid-cols-1  md:grid-cols-2 gap-6">
+            {["name", "email", "phone", "age", "address", "bio"].map((key) => (
+              <div key={key} className="flex flex-col h-16">
+                <label
+                  htmlFor={key}
+                  className="text-sm mb-2 font-medium text-gray-700"
+                >
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </label>
+                <Field
+                  type={
+                    key === "age"
+                      ? "number"
+                      : key === "email"
+                      ? "email"
+                      : "text"
+                  }
+                  id={key}
+                  name={key}
+                  disabled={isSubmitting || key === "email"} // Disable email field to prevent changes
+                  placeholder={`Your ${
+                    key.charAt(0).toUpperCase() + key.slice(1)
+                  }`}
+                  className="border text-xs border-gray-300 border-solid rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm"
+                />
+                {errors[key] && touched[key] && (
+                  <div className="text-red-500 text-xs mt-1">{errors[key]}</div>
+                )}
+              </div>
+            ))}
 
-          {/* Save Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 shadow-md"
-          >
-            {isSubmitting ? "Saving..." : "Save Changes"}
-          </button>
+            {/* Save Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              id="fromSubmitBtn"
+              className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 shadow-md"
+            >
+              {isSubmitting ? "Saving..." : "Save Changes"}
+            </button>
+          </div>
         </Form>
       )}
     </Formik>

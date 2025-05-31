@@ -270,6 +270,10 @@ header nav a:hover {
   height: 100%;
 }
 
+.slick-track {
+  padding: 20px 0px !important;
+}
+
 .slide {
   height: 468px;
 }
@@ -296,7 +300,8 @@ header nav a:hover {
   width: 10px !important;
 }
 
-.slick-center .title, .slick-center .title h2 {
+.slick-center .title,
+.slick-center .title h2 {
   bottom: 64px;
   opacity: 1;
 
@@ -316,6 +321,7 @@ header nav a:hover {
 
 .main-container {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(2, 1fr);
 }
 
@@ -450,7 +456,7 @@ header nav a:hover {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 15px;
   background: #fff;
-  height: 17em;
+  height: 14em;
   width: 17em;
   transition: all 0.2s ease-in-out;
 }
@@ -637,7 +643,7 @@ header nav a:hover {
 }
 
 #main-feed .container .card {
-  height: 250px;
+  height: 230px;
   width: 17em;
   grid-template-rows: 30% 60%;
   border-radius: 10px;
@@ -854,6 +860,10 @@ footer .sec {
 
 .footer-bottom {
   margin-top: 15px;
+}
+
+.footer-bottom small {
+  font-size: 15px;
 }
 
 /* Review Page  */
@@ -1306,6 +1316,8 @@ footer .sec {
 }
 
 .tab-link {
+  text-wrap-mode: nowrap;
+  white-space: nowrap;
   margin: 0 1%;
   list-style: none;
   padding: 10px 30px;
@@ -1369,6 +1381,10 @@ footer .sec {
 }
 
 /* edit profile  */
+#fromSubmitBtn {
+  grid-area: 7 / 1 / 4 / 3;
+}
+
 .myacc>.container {
   padding: 50px 40px;
   margin-top: 7em;
@@ -1520,6 +1536,31 @@ form .resetPwd {
   border-radius: 10px;
 }
 
+.model-block {
+  height: 35em;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.tripAddForm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.input-block:nth-child(2) {
+  grid-area: 2 / 1 / 2 / 3;
+}
+
+.input-block:nth-child(6) {
+  grid-area: 3 / 1 / 3 / 3;
+}
+
+.input-block:nth-child(7) {
+  grid-area: 5 / 1 / 5 / 3;
+}
+
+
 
 
 /* Responsive  */
@@ -1651,7 +1692,6 @@ form .resetPwd {
 
   #main .main-search {
     gap: 0.7em;
-    height: 2.4em;
     border-radius: 10px;
   }
 
@@ -1733,6 +1773,10 @@ form .resetPwd {
   #singReviewContainer {
     margin-bottom: 0 !important;
   }
+
+  #fromSubmitBtn {
+    grid-area: unset;
+  }
 }
 
 /* Small Screen  */
@@ -1768,6 +1812,10 @@ form .resetPwd {
 
   .slick-dots li::marker {
     font-size: 20px;
+  }
+
+  .slick-arrow {
+    display: none !important;
   }
 
   /* SingUp Page  */
@@ -1831,8 +1879,13 @@ form .resetPwd {
     height: unset;
   }
 
+  .main-container {
+    padding-bottom: 3em !important;
+  }
+
   .main-container .left {
     margin-top: 5em;
+    margin-bottom: 1em;
   }
 
   #main .main-search {
@@ -1863,6 +1916,10 @@ form .resetPwd {
     z-index: 10 !important;
   }
 
+  .slick-dots {
+    bottom: -40px !important;
+  }
+
   /* How it works  */
 
   .container {
@@ -1871,12 +1928,20 @@ form .resetPwd {
   }
 
   /* Review  */
+  #main-review .container {
+    margin-top: 0;
+  }
+
   #review-head .sec {
     min-height: fit-content;
     padding: 0 1em;
   }
 
   /* Feed  */
+  #main-feed .container {
+    margin-top: 0;
+  }
+
   .feedSearchBox,
   .feedSearchBox:focus-within {
     width: 100%;
@@ -1885,7 +1950,9 @@ form .resetPwd {
   /* Footer  */
   .footer-logo {
     flex: 1 0 100%;
+    margin-bottom: 2rem;
   }
+
 
   .footer-logo .follow {
     display: block;
@@ -1981,7 +2048,26 @@ form .resetPwd {
   }
 
   #profile-main .container {
-
     min-height: 45vh;
+  }
+
+  .model-block {
+    height: 30em;
+  }
+
+  .tripAddForm {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .tripAddForm .input-block:nth-child(2) {
+    grid-area: unset;
+  }
+
+  .tripAddForm .input-block:nth-child(6) {
+    grid-area: unset;
+  }
+
+  .tripAddForm .input-block:nth-child(7) {
+    grid-area: unset;
   }
 }

@@ -12,7 +12,7 @@ function TabsContainer({setTrips, trips}) {
   const [activeTab, setActiveTab] = useState("tab1");
 
   const tabs = [
-    { id: "tab1", label: "Trip" },
+    { id: "tab1", label: "Upcoming Trip" },
     { id: "tab2", label: "Followers" },
     { id: "tab3", label: "Following" },
     { id: "tab4", label: "Reviews" },

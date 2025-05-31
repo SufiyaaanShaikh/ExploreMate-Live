@@ -7,7 +7,7 @@ function ProfileHeader({ currentUser,profileImage, trips }) {
 
 
   return (
-    <div className="profile-header bg-white">
+    <div className="profile-header profile-block bg-white">
       <div className="container flex-col flex items-center">
         <div className="profile-pic">
           <img src={profileImage} alt="user-image" className="w-100 h-100" />

@@ -97,7 +97,7 @@ const Modal = ({ isOpen, onClose, onAddTrip }) => {
     >
       <div
         ref={modalRef}
-        className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full mt-12 m-4"
+        className="bg-white model-block p-6 rounded-lg shadow-lg max-w-2xl w-full mt-12 m-4"
       >
         <h2 className="text-xl font-bold mb-6 text-center">Add New Trip</h2>
         
@@ -107,8 +107,8 @@ const Modal = ({ isOpen, onClose, onAddTrip }) => {
           onSubmit={handleSubmit}
         >
           {({ isSubmitting, touched, errors }) => (
-            <Form>
-              <div className="mb-4">
+            <Form className="tripAddForm">
+              <div className="mb-4 input-block">
                 <label className="block text-gray-600 mb-2">
                   Trip Title
                 </label>
@@ -123,7 +123,7 @@ const Modal = ({ isOpen, onClose, onAddTrip }) => {
                 <ErrorMessage name="title" component="div" className="text-red-500 mt-1 text-sm" />
               </div>
               
-              <div className="mb-4">
+              <div className="mb-4 input-block">
                 <label className="block text-gray-600 mb-2">
                   Description
                 </label>
@@ -136,7 +136,7 @@ const Modal = ({ isOpen, onClose, onAddTrip }) => {
                 <ErrorMessage name="description" component="div" className="text-red-500 mt-1 text-sm" />
               </div>
               
-              <div className="mb-4">
+              <div className="mb-4 input-block">
                 <label className="block text-gray-600 mb-2">
                   Destination
                 </label>
@@ -151,7 +151,7 @@ const Modal = ({ isOpen, onClose, onAddTrip }) => {
                 <ErrorMessage name="destination" component="div" className="text-red-500 mt-1 text-sm" />
               </div>
               
-              <div className="mb-4">
+              <div className="mb-4 input-block">
                 <label className="block text-gray-600 mb-2">Group</label>
                 <Field
                   as="select"
@@ -167,7 +167,7 @@ const Modal = ({ isOpen, onClose, onAddTrip }) => {
                 <ErrorMessage name="group" component="div" className="text-red-500 mt-1 text-sm" />
               </div>
               
-              <div className="mb-4">
+              <div className="mb-4 input-block">
                 <label className="block text-gray-600 mb-2">
                   Trip Duration
                 </label>
@@ -182,7 +182,7 @@ const Modal = ({ isOpen, onClose, onAddTrip }) => {
                 <ErrorMessage name="duration" component="div" className="text-red-500 mt-1 text-sm" />
               </div>
               
-              <div className="mb-4">
+              <div className="mb-4 input-block">
                 <label className="block text-gray-600 mb-2">
                   Trip Dates
                 </label>
@@ -212,7 +212,7 @@ const Modal = ({ isOpen, onClose, onAddTrip }) => {
                 </div>
               </div>
               
-              <div className="flex gap-3">
+              <div className="flex gap-3 input-block">
                 <button
                   type="button"
                   onClick={onClose}

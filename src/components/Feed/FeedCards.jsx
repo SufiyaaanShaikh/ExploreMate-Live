@@ -38,7 +38,7 @@ const FeedCards = memo(function FeedCards({
         const isFollowing = isUserFollowed(user._id);
 
         return (
-          <>
+          <React.Fragment key={user._id}>
             {/* {followLoading ? ( */}
             {/* <LoadingSpinner /> */}
             {/* ) : ( */}
@@ -109,7 +109,7 @@ const FeedCards = memo(function FeedCards({
               </div>
             </motion.div>
             {/* )} */}
-          </>
+          </React.Fragment>
         );
       })}
     </>

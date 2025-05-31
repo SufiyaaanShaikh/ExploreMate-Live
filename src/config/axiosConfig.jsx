@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 // Create API instance with base configuration
 const api = axios.create({
-  baseURL: 'https://exploremates-backend-production.up.railway.app/api',
+  baseURL: 'http://localhost:5017/api',
   timeout: 10000,
   withCredentials: true
 });
