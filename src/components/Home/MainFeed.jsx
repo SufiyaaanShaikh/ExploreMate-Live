@@ -28,7 +28,7 @@ const MainFeed = () => {
   const displayedUsers = isHomePage ? users.slice(0, 6) : users;
   return (
     <>
-      {displayedUsers.length === 0 ? (
+      {displayedUsers.length > 0 ? (
         <section id="main-feed" className="vh-70 position">
           <div className="sec vh-70 pad flex justify-content">
             <SectionHeading
