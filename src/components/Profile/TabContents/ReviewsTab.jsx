@@ -181,7 +181,7 @@ function ReviewsTab() {
               )}
             </motion.div>
           ) : (
-            <div className="container flex justify-center items-center">
+            <div className="flex justify-center items-center">
               <p>No reviews found.</p>
             </div>
           )}

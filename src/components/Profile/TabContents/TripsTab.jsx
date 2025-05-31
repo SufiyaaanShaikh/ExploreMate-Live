@@ -141,13 +141,16 @@ function TripsTab({setTrips, trips}) {
 
   return (
     <motion.div
-      className="tab-content p-4"
+      className="tab-content"
       initial="hidden"
       animate="visible"
       variants={fadeInVariants}
     >
       <h3 className="text-lg font-semibold mb-4 text-center">
-        {isProfilePage ? "Your Trips" : "User's Trips"}
+        {trips.length === 0 && !loading
+          ? "No trips found. Add your first trip!"
+          : isProfilePage ? "Your Trips" : "User's Trips"}
+       
       </h3>
       
       {loading ? (
@@ -193,7 +196,7 @@ function TripsTab({setTrips, trips}) {
 
           {trips.length === 0 && !loading ? (
             <div className="col-span-full text-center py-8 text-gray-500">
-              {isProfilePage ? "No trips found. Add your first trip!" : "This user hasn't added any trips yet."}
+              {isProfilePage ? "" : "This user hasn't added any trips yet."}
             </div>
           ) : (
             trips.map((trip) => (

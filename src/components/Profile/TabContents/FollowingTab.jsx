@@ -93,7 +93,7 @@ function FollowingTab() {
     animate="visible"
     variants={fadeInVariants}
   >
-    <h3 className="font-medium">Following Count</h3>
+    <h3 className="font-semibold">Following Count</h3>
     <div className="tab-block w-full mt-4">
       <motion.div 
         className="followers-container flex flex-wrap justify-center"

@@ -36,14 +36,14 @@ function MainReview() {
     <>
       {loading ? (
         <div className="container flex justify-center items-center">
-          <p>Loading reviews...</p>
+          <p>Loading trips...</p>
         </div>
       ) : reviews.length > 0 ? (
         <section id="main-review" className="vh-70 position">
           <div className="sec vh-70 flex justify-content items-center pad">
             <SectionHeading
-              secHead="Top places with reviews"
-              secSubHead="Travelers reviews"
+              secHead="Top places with trip"
+              secSubHead="Travelers trip"
             />
 
             <div className="container flex justify-center flex-wrap">

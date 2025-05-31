@@ -208,9 +208,9 @@ function UserProfileHeader({ trips }) {
                 ? "Unfollow"
                 : "Follow"}
             </button>
-            <button id="msgBtn" className="msgBtn">
+            {/* <button id="msgBtn" className="msgBtn">
               Message
-            </button>
+            </button> */}
           </div>
           {/* )} */}
         </div>

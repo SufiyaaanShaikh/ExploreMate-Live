@@ -15,7 +15,7 @@ function TabsContainer({setTrips, trips}) {
     { id: "tab1", label: "Upcoming Trip" },
     { id: "tab2", label: "Followers" },
     { id: "tab3", label: "Following" },
-    { id: "tab4", label: "Reviews" },
+    { id: "tab4", label: "Trip" },
   ];
 
   const tabContent = {

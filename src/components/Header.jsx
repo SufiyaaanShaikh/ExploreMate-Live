@@ -36,7 +36,7 @@ function Header() {
                 Users
               </Link>
               <Link to={"/review"} className="fw-500 f-16">
-                Review
+                Trip
               </Link>
             </nav>
             <label htmlFor="profile-menu" className="profile-menu">

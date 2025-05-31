@@ -99,7 +99,7 @@ function FollowersTab() {
   };
 
   if (!followers || followers.length <= 0) {
-    return <p className="text-center">No Followers yet</p>;
+    return <p className="text-center font-semibold">No Followers yet</p>;
   }
 
   return (
@@ -109,7 +109,7 @@ function FollowersTab() {
       animate="visible"
       variants={fadeInVariants}
     >
-      <h3 className="font-medium">Followers Count</h3>
+      <h3 className="font-semibold">Followers Count</h3>
       <div className="tab-block w-full mt-4">
         <motion.div
           className="followers-container flex flex-wrap justify-center"
