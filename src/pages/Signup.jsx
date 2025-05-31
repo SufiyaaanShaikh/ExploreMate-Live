@@ -38,7 +38,7 @@ const Signup = () => {
       setCurrentUser(name);
       // Use the local variable in the request
       const response = await axios.post(
-        "http://localhost:5017/api/auth/signup",
+        "https://exploremates-backend-production.up.railway.app/api/auth/signup",
         {
           name,
           email,

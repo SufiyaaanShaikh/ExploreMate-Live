@@ -63,7 +63,7 @@ function FeedContainer() {
       <div className="feed-sec sec pad flex">
         <div className="title">
           <h2 className="text-center fw-500 feedHeading mb-4">Travel Feed</h2>
-          <SearchInputBox handleSearch={(e) => setSearchQuery(e.target.value)} searchQuery={searchQuery} />
+          <SearchInputBox handleSearch={(e) => setSearchQuery(e.target.value)} searchQuery={searchQuery}  onSubmit={(e)=>  e.preventDefault()}/>
         </div>
 
         <motion.div

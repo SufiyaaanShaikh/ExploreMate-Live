@@ -27,35 +27,39 @@ const MainFeed = () => {
   // Show only 4 users on the homepage
   const displayedUsers = isHomePage ? users.slice(0, 6) : users;
   return (
-    <section id="main-feed" className="vh-70 position">
-      <div className="sec vh-70 pad flex justify-content">
-        <SectionHeading
-          secHead="Travel Feed"
-          secSubHead="Find a travel buddy"
-        />
-        <div
-          id="feedContainer"
-          className="container flex justify-center flex-wrap main-feedContainer"
-        >
-          {displayedUsers.length === 0 ? (
-            <div className="container flex justify-center items-center">
-              <p>No Users Available</p>
-            </div>
-          ) : (
-            <FeedCards
-              filteredDestinations={displayedUsers}
-              handleFollow={handleFollow}
-              currentUser={currentUser}
+    <>
+      {displayedUsers.length === 0 ? (
+        <section id="main-feed" className="vh-70 position">
+          <div className="sec vh-70 pad flex justify-content">
+            <SectionHeading
+              secHead="Travel Feed"
+              secSubHead="Find a travel buddy"
             />
-          )}
-        </div>
-        <div className="view-all text-center">
-          <Link to="/feed" className="btn fw-500 para-f">
-            View All
-          </Link>
-        </div>
-      </div>
-    </section>
+            <div
+              id="feedContainer"
+              className="container flex justify-center flex-wrap main-feedContainer"
+            >
+              {/* <div className="container flex justify-center items-center">
+                <p>No Users Available</p>
+              </div> */}
+
+              <FeedCards
+                filteredDestinations={displayedUsers}
+                handleFollow={handleFollow}
+                currentUser={currentUser}
+              />
+            </div>
+            <div className="view-all text-center">
+              <Link to="/feed" className="btn fw-500 para-f">
+                View All
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
