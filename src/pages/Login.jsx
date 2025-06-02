@@ -22,11 +22,10 @@ const Login = () => {
     const { email, password } = values;
 
     try {
-         // Send login request to the backend
       const { data, status } = await api.post(
         "auth/login",
         { email, password },
-        { withCredentials: true } // Include cookies in the request
+        { withCredentials: true } 
       );
 
       if (status === 200) {
@@ -58,7 +57,7 @@ const Login = () => {
           <FormHedaing
             heading="Welcome Back, "
             subHeading="Enter Login Details"
-            user={currentUser} // Changed from user to currentUser to match context
+            user={currentUser} 
           />
           <AuthForm
             initialValues={initialValues}
