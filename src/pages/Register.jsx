@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import OTPModal from "../components/Form/OTPModal";
+import api from "../config/axiosConfig";
 
 function Register() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [showOTPModal, setShowOTPModal] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const { setCurrentUser } = useContext(AuthContext);
 
   const initialValues = {
     name: "",
@@ -39,8 +39,8 @@ function Register() {
       const { name, email, password, DOB } = values;
 
       // Step 1: Send OTP to email
-      const response = await axios.post(
-        "https://explore-mates-backend.vercel.app/api/auth/send-signup-otp",
+      const response = await api.post(
+        "auth/send-signup-otp",
         {
           name,
           email,
@@ -69,7 +69,6 @@ function Register() {
 
   const handleOTPSuccess = (data) => {
     setShowOTPModal(false);
-    setCurrentUser(data.data.user.name);
     toast.success("Account created successfully!");
     setTimeout(() => {
       navigate("/login");
@@ -78,8 +77,8 @@ function Register() {
 
   const handleResendOTP = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5017/api/auth/resend-otp",
+      const response = await api.post(
+        "auth/resend-otp",
         { email: userEmail },
         { timeout: 15000 }
       );

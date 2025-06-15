@@ -31,7 +31,7 @@ const StaggeredDropDown = () => {
   //   };
   //   fetchUser();
   // }, []);
-
+  console.log("Current User:", currentUser);
   return (
     <div className="flex items-center justify-center relative">
       {/* Dropdown Trigger */}
@@ -98,7 +98,10 @@ const StaggeredDropDown = () => {
               className="h-[50px] w-[50px] rounded-full object-cover"
             />
             <div className="flex flex-col justify-center">
-              <Link to="/profile" className="text-lg hover:text-zinc-500 font-semibold text-zinc-900">
+              <Link
+                to="/profile"
+                className="text-lg hover:text-zinc-500 font-semibold text-zinc-900"
+              >
                 {currentUser ? currentUser.username : "Guest User"}
               </Link>
               <p className="text-xs text-zinc-600">
