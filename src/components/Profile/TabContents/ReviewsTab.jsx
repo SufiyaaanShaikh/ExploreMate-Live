@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useLocation, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa"; // Import trash icon
 import api from "../../../config/axiosConfig";
@@ -16,11 +16,8 @@ function ReviewsTab() {
   const [loading, setLoading] = useState(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reviewToDelete, setReviewToDelete] = useState(null);
-  const location = useLocation();
   const params = useParams();
 
-  // Determine if this is the current user's profile or another user's profile
-  const isProfilePage = location.pathname === "/profile";
   const viewingUserId = params.id; // This will be undefined for the current user's profile
   const isCurrentUserProfile = !viewingUserId; // If no userId in params, it's the current user's profile
 

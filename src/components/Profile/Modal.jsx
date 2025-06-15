@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import api from "../../config/axiosConfig";
 import toast from "react-hot-toast";
 import TripSchema from "../../schemas/tripSchema";

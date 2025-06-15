@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import  { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/Form/AuthForm";
 import { getValidationSchema } from "../schemas";
 import AuthContext from "../context/AuthContext";
-import FormHedaing from "../components/Form/FormHedaing";
+import FormHedaing from "../components/Form/FormHeading";
 import toast from "react-hot-toast";
-import axios from "axios";
 import api from "../config/axiosConfig";
 
 const Login = () => {

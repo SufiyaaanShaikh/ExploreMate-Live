@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import AuthForm from "../components/Form/AuthForm";
 import { getValidationSchema } from "../schemas";
-import FormHedaing from "../components/Form/FormHedaing";
+import FormHeading from "../components/Form/FormHeading";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../context/AuthContext";;
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const Signup = () => {
       <div className="left"></div>
       <div className="right h-100 w-100 flex justify-content">
         <div className="sec">
-          <FormHedaing
+          <FormHeading
             heading="Hi, Get Started Now"
             subHeading="Enter details to create your Travel Pulse account"
           />

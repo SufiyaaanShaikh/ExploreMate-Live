@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import editIcon from "../../images/edit-icon.svg";
 import shareIcon from "../../images/share.svg";

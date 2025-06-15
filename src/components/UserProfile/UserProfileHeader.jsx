@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext, useMemo } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import LoadingSpinner from "../../components/LoadingSpinner"; // Assume we have this component
-import api from "../../config/axiosConfig";
+import LoadingSpinner from "../../components/LoadingSpinner"; // Assume we have this component;
 import toast from "react-hot-toast";
 import userIcon from "../../images/user.webp";
 import Header from "../Header";
@@ -22,7 +21,6 @@ function UserProfileHeader({ trips }) {
     profileCache,
     fetchUserProfile,
   } = useContext(AuthContext);
-  const token = localStorage.getItem("token");
 
   // Authentication check and data fetching
   useEffect(() => {

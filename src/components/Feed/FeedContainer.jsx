@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FeedCards from "./FeedCards";
 import { motion } from "framer-motion";
@@ -6,7 +6,6 @@ import SearchInputBox from "./SearchInputBox";
 import api from "../../config/axiosConfig";
 import toast from "react-hot-toast";
 import AuthContext from "../../context/AuthContext"; 
-import LoadingSpinner from "../LoadingSpinner";
 import SkeletonCard from "./SkeletonCard";
 
 function FeedContainer() {
@@ -20,7 +19,6 @@ function FeedContainer() {
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("token");
 
   const fetchData = async (query = "") => {
     try {

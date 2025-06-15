@@ -1,5 +1,5 @@
 // FollowersTab.jsx
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
 import api from "../../../config/axiosConfig";
@@ -12,7 +12,6 @@ function FollowersTab() {
   const { id } = useParams();
   const location = useLocation();
   const isProfilePage = location.pathname === "/profile";
-  const token = localStorage.getItem("token");
   const [followers, setFollowers] = useState([]);
   const { currentUser, profileCache, fetchUserProfile } =
     useContext(AuthContext);

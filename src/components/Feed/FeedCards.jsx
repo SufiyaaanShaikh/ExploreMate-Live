@@ -4,7 +4,6 @@ import imgSrcUser from "../../images/user.png";
 import cityIcon from "../../images/destiniaion.svg";
 import groupIcon from "../../images/group.svg";
 import { motion } from "framer-motion";
-import LoadingSpinner from "../LoadingSpinner";
 
 // Memoized component to prevent unnecessary re-renders
 const FeedCards = memo(function FeedCards({

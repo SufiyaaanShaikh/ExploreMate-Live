@@ -53,6 +53,7 @@ function WriteReview() {
     try {
       // Create form data for sending to API
       const reviewFormData = new FormData();
+      console.log(values)
 
       // Add form fields to FormData
       Object.keys(values).forEach((key) => {
@@ -67,7 +68,7 @@ function WriteReview() {
       }
 
       // Submit to API
-      const response = await api.post("/review", reviewFormData, {
+      const response = await api.post("/reviewmnchdsb", reviewFormData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

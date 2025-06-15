@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import "./css/App.css";
 import "./css/utility.css";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+// import Signup from "./pages/Signup";
 import Feed from "./pages/Feed";
 import Review from "./pages/Review";
 import { Toaster } from "react-hot-toast";
@@ -17,22 +17,21 @@ import TripPage from "./components/Profile/TripPage";
 import Parent from "./pages/Parent";
 import Private from "./pages/Private";
 import EditWiki from "./components/Admin/EditWiki";
+import Register from "./pages/Register";
 
 
 const AppLayout = ({ children }) => {
-  React.useEffect(() => {
+  const location = useLocation();
+
+  useEffect(() => {
     window.scrollTo(0, 0);
-  }, [window.location.pathname]);
+  }, [location.pathname]);
 
   return <>{children}</>;
 };
 
 const withLayout = (Component) => {
-  return (
-    <AppLayout>
-      <Component />
-    </AppLayout>
-  );
+  return <AppLayout>{<Component />}</AppLayout>;
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -48,8 +47,12 @@ const allRoutes = createBrowserRouter([
   },
   {
     path: "/signup",
-    element: withLayout(Signup),
+    element: withLayout(Register),
   },
+  // {
+  //   path: "/register",
+  //   element: withLayout(Register),
+  // },
   {
     path: "/feed",
     element: withLayout(Feed),

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SectionHeading from "./SectionHeading";
 import MainReviewCards from "./MainReviewCards";
 import api from "../../config/axiosConfig";
-import toast from "react-hot-toast";
 
 function MainReview() {
   const [reviews, setReviews] = useState([]);

@@ -7,7 +7,7 @@ const FormInput = ({ type, name, placeholder, autoFocus = false }) => (
       type={type}
       name={name}
       placeholder={placeholder}
-      className="fw-500 f-16"
+      className=""
       autoFocus={autoFocus}
       autoComplete="off"
     />

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import api from "../../config/axiosConfig"; // Adjust the path as needed
+import AuthContext from "../../context/AuthContext";
 
 // Validation Schema
 const ProfileValidationSchema = Yup.object().shape({
@@ -30,6 +31,7 @@ const ProfileForm = () => {
   const [loading, setLoading] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
   const [profileFile, setProfileFile] = useState(null);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
 
   // Fetch user data from the database
   useEffect(() => {
@@ -84,7 +86,6 @@ const ProfileForm = () => {
       if (profileFile) {
         formData.append("profile", profileFile);
       }
-
       // Make the API request
       const response = await api.put("/user/update-profile", formData, {
         timeout: 20000,
@@ -92,6 +93,11 @@ const ProfileForm = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+
+      setCurrentUser((prev) => ({
+        ...prev,
+        ...response.data.data,
+      })); // Update current user context
 
       // Update local user data
       setUserData((prev) => ({
