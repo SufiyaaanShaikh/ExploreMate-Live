@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import api from '../../config/axiosConfig';
 
 const OTPModal = ({ 
   isOpen, 
@@ -102,8 +103,8 @@ const OTPModal = ({
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        'http://localhost:5017/api/auth/verify-otp-signup',
+      const response = await api.post(
+        'auth/verify-otp-signup',
         {
           email,
           otp: otpString,
