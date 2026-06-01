@@ -34,12 +34,13 @@ function FeedContainer() {
       setLoading(false);
     }
   };
+useEffect(() => {
+  const delayDebounce = setTimeout(() => {
+    fetchData(searchQuery.trim());
+  }, 500); // 500ms debounce
 
-  useEffect(() => {
-      fetchData(searchQuery.trim());
-      // navigate("/login");
-      // toast.error("Please login to view feed");
-  }, [searchQuery]);
+  return () => clearTimeout(delayDebounce); // Cleanup
+}, [searchQuery]);
 
   // if(followLoading) {
   //   return (

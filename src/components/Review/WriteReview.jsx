@@ -68,7 +68,7 @@ function WriteReview() {
       }
 
       // Submit to API
-      const response = await api.post("/reviewmnchdsb", reviewFormData, {
+      const response = await api.post("/review", reviewFormData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

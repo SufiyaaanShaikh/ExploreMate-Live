@@ -31,7 +31,6 @@ const StaggeredDropDown = () => {
   //   };
   //   fetchUser();
   // }, []);
-  console.log("Current User:", currentUser);
   return (
     <div className="flex items-center justify-center relative">
       {/* Dropdown Trigger */}
