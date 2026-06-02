@@ -1,5 +1,5 @@
 import React from "react";
-import SearchIcon from "../../images/search-black.svg" 
+// import SearchIcon from "../../images/search-black.svg" 
 
 const ReviewHeading = () => (
   <section id="review-head">

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../images/Explore.svg";
+// import logo from "../../images/Explore.svg";
 
 const FormHeading = ({ heading, subHeading, user }) => (
   <>

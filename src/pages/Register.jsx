@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import toast from "react-hot-toast";
 import AuthForm from "../components/Form/AuthForm";
 import { getValidationSchema } from "../schemas";
 import FormHeading from "../components/Form/FormHeading";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import AuthContext from "../context/AuthContext";
+// import axios from "axios";
+// import AuthContext from "../context/AuthContext";
 import OTPModal from "../components/Form/OTPModal";
 import api from "../config/axiosConfig";
 

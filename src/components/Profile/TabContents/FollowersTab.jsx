@@ -133,7 +133,7 @@ function FollowersTab() {
                     <img
                       src={follower.profilePhoto || defaultProfilePic}
                       className="h-full w-full object-cover rounded-full"
-                      alt="user image"
+                      alt="user profile"
                     />
                   </div>
                   <div className="flw-name flex-grow">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import toast, { Toaster } from "react-hot-toast";
@@ -35,16 +35,16 @@ function EditWiki() {
 
   useEffect(() => {
     fetchDestination();
-    
+
     // Clean up any object URLs to avoid memory leaks
     return () => {
-      if (imageUrl && imageUrl.startsWith('blob:')) {
+      if (imageUrl && imageUrl.startsWith("blob:")) {
         URL.revokeObjectURL(imageUrl);
       }
     };
-  }, [destinationId]);
+  }, [destinationId, fetchDestination, imageUrl]);
 
-  const fetchDestination = async () => {
+  const fetchDestination = useCallback(async () => {
     try {
       const response = await api.get(`/destination/${destinationId}`);
       if (response.data.success) {
@@ -61,17 +61,17 @@ function EditWiki() {
       toast.error("Destination not found");
       navigate("/display-wiki");
     }
-  };
+  }, [destinationId]);
 
   // Handle image upload
   const handleImageUpload = (setFieldValue, event) => {
     const file = event.target.files[0];
     if (file) {
       // Revoke the old object URL if it exists
-      if (imageUrl && imageUrl.startsWith('blob:')) {
+      if (imageUrl && imageUrl.startsWith("blob:")) {
         URL.revokeObjectURL(imageUrl);
       }
-      
+
       // Create new object URL and store the file
       const newImageUrl = URL.createObjectURL(file);
       setImageUrl(newImageUrl);
@@ -83,7 +83,7 @@ function EditWiki() {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const formData = new FormData();
-      
+
       // Add text fields
       formData.append("name", values.name);
       formData.append("description", values.description);
@@ -96,12 +96,16 @@ function EditWiki() {
         formData.append("destinationPhoto", newImageFile);
       }
 
-      const response = await api.put(`/destination/${destinationId}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      const response = await api.put(
+        `/destination/${destinationId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         },
-      });
-      
+      );
+
       if (response.data.success) {
         toast.success("Destination updated successfully", {
           position: "top-center",
@@ -114,7 +118,8 @@ function EditWiki() {
       }
     } catch (error) {
       console.error("Submission error:", error);
-      const errorMessage = error.response?.data?.message || "Failed to update destination";
+      const errorMessage =
+        error.response?.data?.message || "Failed to update destination";
       toast.error(errorMessage);
     } finally {
       setSubmitting(false);
@@ -127,19 +132,19 @@ function EditWiki() {
         <div className="animate-pulse">
           <div className="h-8 bg-gray-200 rounded w-2/3 mb-4"></div>
           <div className="h-4 bg-gray-200 rounded w-1/2 mb-8"></div>
-          
+
           <div className="h-56 bg-gray-200 rounded-lg mb-6"></div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="h-12 bg-gray-200 rounded"></div>
             <div className="h-12 bg-gray-200 rounded"></div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="h-12 bg-gray-200 rounded"></div>
             <div className="h-12 bg-gray-200 rounded"></div>
           </div>
-          
+
           <div className="h-32 bg-gray-200 rounded mb-8"></div>
           <div className="h-12 bg-gray-200 rounded"></div>
         </div>
@@ -161,7 +166,7 @@ function EditWiki() {
     description: destination.description || "",
     location: destination.location || "",
     bestTimeToVisit: destination.bestTimeToVisit || "",
-    travelDuration: destination.travelDuration || ""
+    travelDuration: destination.travelDuration || "",
   };
 
   return (
@@ -353,7 +358,7 @@ function EditWiki() {
               >
                 Cancel
               </button>
-              
+
               <button
                 type="submit"
                 disabled={isSubmitting}

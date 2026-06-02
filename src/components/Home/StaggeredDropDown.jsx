@@ -1,14 +1,14 @@
-import { FiEdit, FiTrash, FiShare, FiUser, FiLogIn } from "react-icons/fi";
+import { FiEdit, FiTrash, FiShare, FiUser } from "react-icons/fi";
 import { MdOutlineSupportAgent } from "react-icons/md";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import profileIcon from "../../images/profil.svg";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import AuthContext from "../../context/AuthContext";
 import Option from "../Home/Option";
 import SpringModal from "../Home/SpringModal";
-import api from "../../config/axiosConfig";
+// import api from "../../config/axiosConfig";
 
 // Main Dropdown Component
 const StaggeredDropDown = () => {

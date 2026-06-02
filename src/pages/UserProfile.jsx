@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext, useMemo } from "react";
+import React, { } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Tabs from "../components/Profile/Tabs";
-import TabContent from "../components/Profile/TabContent";
+// import Tabs from "../components/Profile/Tabs";
+// import TabContent from "../components/Profile/TabContent";
 import UserProfileHeader from "../components/UserProfile/UserProfileHeader";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import TabsContainer from "../components/Profile/TabsContainer";
 
 function UserProfile({trips, setTrips}) {

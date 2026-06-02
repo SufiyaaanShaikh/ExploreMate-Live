@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import EyeClosedIcon from "../../images/eye_closed.svg";
 import EyeOpenIcon from "../../images/eye_open.svg"; // You'll need to add this SVG
 import laddak from "../../images/laddak.jpg";
-import axios from "axios";
+// import axios from "axios";
 import api from "../../config/axiosConfig";
 
 const PasswordChange = () => {

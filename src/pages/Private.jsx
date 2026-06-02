@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import AdminPanel from "./AdminPanel";
 import Home from "./Home";
-import api from "../config/axiosConfig";
-import LoadingSpinner from "../components/LoadingSpinner";
+// import api from "../config/axiosConfig";
+// import LoadingSpinner from "../components/LoadingSpinner";
 import AuthContext from "../context/AuthContext";
 
 function Private() {  
